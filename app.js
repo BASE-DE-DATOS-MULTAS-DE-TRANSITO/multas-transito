@@ -1,3 +1,9 @@
+// Inicializa la conexión a Supabase
+const supabaseUrl = 'https://azeczuxaefiqayntkcre.supabase.co'; // URL de tu proyecto
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF6ZWN6dXhhZWZpcWF5bnRrY3JlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ4OTU3ODQsImV4cCI6MjA0MDQ3MTc4NH0.aGV5FJzKC1V-UrPViVaKIE_-dnUESD2CviSn9bjDdLo'; // Reemplaza con tu clave pública (anon key)
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// Función para buscar multas por cédula
 async function buscarMultas() {
     const cedula = document.getElementById('cedula').value;
 
@@ -11,17 +17,11 @@ async function buscarMultas() {
     document.getElementById('tabla-multas').style.display = 'none';
 
     try {
-        // Conexión a Supabase (reemplaza con tus credenciales)
-        const { createClient } = supabase;
-        const supabaseUrl = 'https://tu-url.supabase.co';
-        const supabaseKey = 'tu-api-key';
-        const supabase = createClient(supabaseUrl, supabaseKey);
-
-        // Buscar multas por cédula
+        // Buscar las multas por cédula en la tabla 'multas'
         const { data: multas, error } = await supabase
-            .from('multas')
+            .from('multas')  // Reemplaza con el nombre de tu tabla de multas
             .select('*')
-            .eq('cedula', cedula); // Reemplaza con tu lógica de conexión
+            .eq('cedula', cedula);
 
         if (error) {
             throw error;

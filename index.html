@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Multas de Tránsito</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de Multas de Tránsito</h1>
+    </header>
+
+    <main>
+        <!-- Formulario de búsqueda -->
+        <div id="app">
+            <input type="text" id="cedula" placeholder="Ingresa la cédula del cliente">
+            <button onclick="buscarMultas()">Buscar Multas</button>
+
+            <!-- Resultados de la búsqueda -->
+            <div id="resultado">
+                <!-- Aquí se mostrarán los resultados -->
+            </div>
+
+            <!-- Tabla para mostrar las multas -->
+            <table id="tabla-multas" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>ID Multa</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-cuerpo">
+                    <!-- Aquí se agregarán las multas dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Gestión de Multas</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

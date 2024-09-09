@@ -17,11 +17,11 @@ async function buscarMultas() {
     document.getElementById('tabla-multas').style.display = 'none';
 
     try {
-        // Buscar las multas por cédula en la tabla 'multas'
+        // Realiza un join entre las tablas multas, proceso_cliente y clientes
         const { data: multas, error } = await supabase
-            .from('multas')  // Reemplaza con el nombre de tu tabla de multas
-            .select('*')
-            .eq('cedula', cedula);
+            .from('multas')
+            .select('*, proceso_cliente(id_cliente, clientes(cedula, nombre))')
+            .eq('clientes.cedula', cedula);
 
         if (error) {
             throw error;

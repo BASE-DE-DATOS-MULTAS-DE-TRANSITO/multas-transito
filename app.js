@@ -17,7 +17,6 @@ async function buscarMultas() {
     document.getElementById('tabla-multas').style.display = 'none';
 
     try {
-        // Realiza un join entre las tablas para obtener los datos relacionados
         const { data: multas, error } = await supabase
             .from('multas')
             .select('id_multa, multa, fecha, estado, proceso_cliente(secretaría), proceso_cliente!inner(clientes!inner(nombre, cedula))')
@@ -27,17 +26,16 @@ async function buscarMultas() {
             throw error;
         }
 
-        // Imprimir los datos en la consola para ver si los estamos obteniendo
-        console.log('Datos de multas obtenidos:', multas);
+        console.log('Datos de multas obtenidos:', multas); // Verifica si recibes datos en la consola.
 
         if (multas.length > 0) {
-            mostrarMultas(multas);  // Llamada a la función para mostrar los datos
+            mostrarMultas(multas);
         } else {
             document.getElementById('resultado').innerHTML = 'No se encontraron multas para esta cédula.';
         }
     } catch (error) {
-        console.error('Error al buscar multas:', error);
-        document.getElementById('resultado').innerHTML = 'Error al buscar multas. Intenta de nuevo.';
+        console.error('Error detallado:', error); // Mostrar el error exacto
+        document.getElementById('resultado').innerHTML = `Error al buscar multas. Detalle: ${error.message}`;
     }
 }
 

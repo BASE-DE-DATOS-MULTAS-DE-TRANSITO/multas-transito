@@ -17,26 +17,28 @@ async function buscarMultas() {
     document.getElementById('tabla-multas').style.display = 'none';
 
     try {
-        // Realiza un join entre las tablas multas, proceso_cliente y clientes
-        const { data: multas, error } = await supabase
-            .from('multas')
-            .select('*, proceso_cliente(id_cliente, clientes(cedula, nombre))')
-            .eq('clientes.cedula', cedula);
+        // Consulta más simple solo para verificar si puedes obtener datos
+        const { data: clientes, error } = await supabase
+            .from('clientes')
+            .select('cedula, nombre')
+            .eq('cedula', cedula);
 
         if (error) {
             throw error;
         }
 
-        if (multas.length > 0) {
-            mostrarMultas(multas);
+        if (clientes.length > 0) {
+            document.getElementById('resultado').innerHTML = 'Cliente encontrado: ' + clientes[0].nombre;
+            // Aquí puedes llamar a mostrarMultas si obtienes datos de clientes
         } else {
-            document.getElementById('resultado').innerHTML = 'No se encontraron multas para esta cédula.';
+            document.getElementById('resultado').innerHTML = 'No se encontró un cliente con esa cédula.';
         }
     } catch (error) {
-        console.error('Error al buscar multas:', error);
-        document.getElementById('resultado').innerHTML = 'Error al buscar multas. Intenta de nuevo.';
+        console.error('Error al buscar cliente:', error);
+        document.getElementById('resultado').innerHTML = 'Error al buscar cliente. Intenta de nuevo.';
     }
 }
+
 
 function mostrarMultas(multas) {
     const tablaCuerpo = document.getElementById('tabla-cuerpo');

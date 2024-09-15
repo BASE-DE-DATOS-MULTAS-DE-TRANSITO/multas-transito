@@ -2,27 +2,27 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1.0">
     <title>Gestión de Multas de Tránsito</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de que este archivo esté en la misma carpeta o la ruta sea correcta -->
 </head>
 <body>
     <header>
-        <h1>Gestión de ultasM de Tránsito</h1>
+        <h1>Gestión de Multas de Tránsito</h1>
     </header>
 
     <main>
         <!-- Formulario de búsqueda -->
         <div id="app">
             <input type="text" id="cedula" placeholder="Ingresa la cédula del cliente">
-            <button onclick="buscarMultas()">Buscar Multas</button>
+            <button onclick="buscarMultas()" aria-label="Buscar multas por cédula">Buscar Multas</button>
 
             <!-- Resultados de la búsqueda -->
             <div id="resultado">
                 <!-- Aquí se mostrarán los resultados -->
             </div>
 
-            <!-- Tabla para mostrar las multas -->
+            <!-- Tabla para mostrar las multas -->  
             <table id="tabla-multas" style="display:none;">
                 <thead>
                     <tr>
@@ -42,6 +42,10 @@
         <p>&copy; 2024 Gestión de Multas</p>
     </footer>
 
-    <script src="app.js"></script>
+    <!-- Cargar el SDK de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.28.1/dist/supabase.min.js"></script>
+
+    <!-- Luego, cargar tu archivo app.js -->
+    <script src="app.js" type="module"></script> <!-- Verifica que app.js esté en la misma carpeta o ajusta la ruta si está en otra carpeta -->
 </body>
 </html>

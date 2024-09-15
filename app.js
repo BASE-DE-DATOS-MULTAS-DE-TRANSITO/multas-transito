@@ -1,13 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
-
-// Inicializa la conexión a Supabase
-const supabaseUrl = 'https://azeczuxaefiqayntkcre.supabase.co'; // URL de tu proyecto
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF6ZWN6dXhhZWZpcWF5bnRrY3JlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ4OTU3ODQsImV4cCI6MjA0MDQ3MTc4NH0.aGV5FJzKC1V-UrPViVaKIE_-dnUESD2CviSn9bjDdLo'; // Reemplaza con tu clave pública (anon key)
-const supabase = createClient(supabaseUrl, supabaseKey); // Asegúrate de usar 'createClient' aquí
-
 // Función para buscar multas por cédula
 async function buscarMultas() {
     const cedula = document.getElementById('cedula').value;
+
+    // Limpiar cualquier mensaje de error anterior
+    document.getElementById('error-message').innerHTML = '';
 
     if (!cedula) {
         alert('Por favor, ingresa una cédula.');
@@ -48,12 +44,14 @@ async function buscarMultas() {
             document.getElementById('resultado').innerHTML = 'No se encontraron multas para esta cédula.';
         }
     } catch (error) {
-        console.error('Error detallado:', error); // Mostrar el error exacto
-        document.getElementById('resultado').innerHTML = `Error al buscar multas. Detalle: ${error.message}`;
+        console.error('Error detallado:', error); // Mostrar el error exacto en la consola
+        document.getElementById('error-message').innerHTML = `Error al buscar multas: ${error.message}`;
     }
 }
-// Aquí se asegura que buscarMultas esté disponible globalmente
+
+// Asegura que buscarMultas esté disponible globalmente
 window.buscarMultas = buscarMultas;
+
 function mostrarMultas(multas) {
     const tablaCuerpo = document.getElementById('tabla-cuerpo');
     document.getElementById('tabla-multas').style.display = 'table';
@@ -65,7 +63,7 @@ function mostrarMultas(multas) {
         idMulta.textContent = multa.id_multa;
 
         const estadoMulta = document.createElement('td');
-        estadoMulta.textContent = multa.estado;  // Asegúrate de tener la columna 'estado'
+        estadoMulta.textContent = multa.estado;
 
         const acciones = document.createElement('td');
         acciones.className = 'actions';
@@ -88,7 +86,6 @@ function mostrarMultas(multas) {
         tablaCuerpo.appendChild(fila);
     });
 }
-
 
 function editarMulta(id_multa) {
     alert('Editar multa con ID: ' + id_multa);

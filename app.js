@@ -1,3 +1,8 @@
+// Inicializa el cliente de Supabase
+const supabaseUrl = 'https://azeczuxaefiqayntkcre.supabase.co';  // Reemplaza con tu URL de Supabase
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF6ZWN6dXhhZWZpcWF5bnRrY3JlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ4OTU3ODQsImV4cCI6MjA0MDQ3MTc4NH0.aGV5FJzKC1V-UrPViVaKIE_-dnUESD2CviSn9bjDdLo';  // Reemplaza con tu clave pública (anon key)
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
 // Función para buscar multas por cédula
 async function buscarMultas() {
     const cedula = document.getElementById('cedula').value;

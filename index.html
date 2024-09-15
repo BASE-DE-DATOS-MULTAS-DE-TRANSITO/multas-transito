@@ -17,6 +17,9 @@
             <input type="text" id="cedula" placeholder="Ingresa la cédula del cliente">
             <button onclick="buscarMultas()" aria-label="Buscar multas por cédula">Buscar Multas</button>
 
+            <!-- Espacio para los mensajes de error -->
+            <div id="error-message" style="color: red; margin-top: 20px;"></div>
+
             <!-- Resultados de la búsqueda -->
             <div id="resultado">
                 <!-- Aquí se mostrarán los resultados -->
@@ -42,9 +45,6 @@
         <p>&copy; 2024 Gestión de Multas</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.28.1/dist/supabase.min.js"></script>
-    <!-- Cargar el SDK de Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.28.1/dist/supabase.min.js"></script>
-
     <!-- Luego, cargar tu archivo app.js -->
     <script src="app.js" type="module"></script> <!-- Verifica que app.js esté en la misma carpeta o ajusta la ruta si está en otra carpeta -->
 </body>
